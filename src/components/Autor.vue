@@ -1,39 +1,45 @@
 <template>
-
+<br>
+<br>
   <div id="Author" class="author">
-    <div class="container_author">
+    <div class="container col-4 text-center">
       <h2>Modulo Autores</h2>
 
       <form v-on:submit.prevent="processAuthor">
         <input class="form-control"
           type="text"
-          v-model="Author.author_name"
+          v-model="Autor.author_name"
           placeholder="Nombre del Autor"
         />
         <br>
+        <input class="form-control"
+          type="text"
+          v-model="Autor.author_surname"
+          placeholder="Apellido del Autor"
+        />
           <br>
-          <button class="btn btn-primary form-control" type="input">Nueva categoria</button>
+          <button class="btn btn-primary form-control" type="input">Nuevo autor</button>
       </form>
     </div>
   </div>
-<!--
-  <h2>Autores</h2>     
-    <div class="container-table">
-        <table>
+
+  <h2 class="text-center"> Lista de Autores</h2>     
+    <div class="container table-responsive" style="width:50%; max-height: 200px; overflow-y: scroll; overflow-x: hidden;">
+        <table  class="table table-bordered text-center overflow-auto" style="margin-bottom: 0">
             <tr>
                 <th>Id</th>
                 <th>Autor</th>
                 <th>Apellido</th>
             </tr>
 
-            <tr v-for="autores in transactionByUsername" :key="transaction.id">
-                <td>{{ autores.author_id}}</td>
-                <td>{{ autores.author_name}}</td>
-                <td>{{ autores.author_surname }}</td>
+            <tr v-for="autor in autores" :key="autor.author_id">
+                <td>{{autor.author_id}}</td>
+                <td>{{autor.author_name}}</td>
+                <td>{{autor.author_surname }}</td>
             </tr>
         </table>
     </div>
--->
+
 </template>
 
 
@@ -49,21 +55,21 @@ export default {
           author_name:"",
           author_surname:""
       },
-      authorDetails:[],
+      autores:[],
     };
   },
   mounted(){
     
   },
     apollo: {
-        authorDetails: {
+        autores: {
             query: gql`
                 query {
-                    authorDetails {
-                        category_id
-                        category_name
-                        category_surname
-                    }
+                    autores {
+                    author_id
+                    author_name
+                    author_surname
+                  }
                 }
                 ` ,
                 variables() {
@@ -76,7 +82,7 @@ export default {
 
 
     methods: {
-    processAutor: async function() {
+    processAuthor: async function() {
             console.log(this.Autor.author_name);
       
       if (localStorage.getItem("token_access")  === null ||
@@ -111,16 +117,16 @@ export default {
       await this.$apollo
         .mutate({
           mutation: gql`
-            mutation($authorName: AuthorInput!) {
-              createAuthor(author_name: $authorName) {
-                author_id
-                author_name
-                author_surname
-              }
+            mutation ($author: AuthorInput!) {
+            createAuthor(author: $author) {
+              author_id
+              author_name
+              author_surname
             }
+          }
           `,
           variables: {
-            authorName: this.Autor,
+            author: this.Autor,
           },
         })
         .then((result) => {
@@ -130,6 +136,9 @@ export default {
           alert("Ocurrió un error al crear el autor");
         });
     },
+  },
+  created: function () {
+    this.$apollo.queries.autores.refetch();
   },
 };
 </script>
