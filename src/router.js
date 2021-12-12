@@ -11,6 +11,7 @@ import Autor from './components/Autor.vue'
 import Libro from './components/Libro.vue'
 import Category from './components/Category.vue'
 import Store from './components/Store.vue'
+import ListStore from './components/ListStore.vue'
 
 
 const routes = [{
@@ -65,6 +66,12 @@ const routes = [{
         path: '/user/store',
         name: "store",
         component: Store,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/user/liststore',
+        name: "liststore",
+        component: ListStore,
         meta: { requiresAuth: true }
     },
 
