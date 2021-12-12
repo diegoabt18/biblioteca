@@ -3,7 +3,7 @@
 <br>
   <div id="Author" class="author">
     <div class="container col-4 text-center">
-      <h2>Modulo Autores</h2>
+      <h2>Módulo Autores</h2>
 
       <form v-on:submit.prevent="processAuthor">
         <input class="form-control"
@@ -24,7 +24,7 @@
   </div>
 <br>
 <br>
-  <h2 class="text-center"> Lista de Autores</h2>     
+  <h4 class="text-center"> Lista de Autores</h4>     
     <div class="container table-responsive" style="width:50%; max-height: 200px; overflow-y: scroll; overflow-x: hidden;">
         <table  class="table table-bordered text-center overflow-auto" style="margin-bottom: 0">
             <tr>
