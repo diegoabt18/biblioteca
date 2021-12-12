@@ -14,6 +14,9 @@
               <b-button class="btn btn-light"  v-if="is_auth" v-on:click="loadHome">Inicio</b-button>
               <b-button class="btn btn-light"  v-if="is_auth" v-on:click="loadAccount">Cuenta</b-button>
               <b-button class="btn btn-light"  v-if="is_auth" v-on:click="loadTransaction">Transacción</b-button>
+              <b-button class="btn btn-light"  v-if="is_auth" v-on:click="loadAutor">Autor</b-button>
+              <b-button class="btn btn-light"  v-if="is_auth" v-on:click="loadLibro">Libro</b-button>
+              <b-button class="btn btn-light"  v-if="is_auth" v-on:click="loadCategoria">Categoria</b-button>
               <b-button class="btn btn-light"  v-if="is_auth" v-on:click="logOut">Cerrar Sesión</b-button>
               <b-button class="btn btn-light"  v-if="!is_auth" v-on:click="loadLogIn" >Iniciar Sesión</b-button>
               <b-button class="btn btn-light"  v-if="!is_auth" v-on:click="loadSignUp">Registrarse</b-button>
@@ -96,6 +99,15 @@ export default {
 			alert("Sesión Cerrada");
       this.loadLogIn();
 		},
+    loadAutor: function(){
+      this.$router.push({ name: "autor" });
+    },
+    loadLibro: function(){
+      this.$router.push({ name: "libro" });
+    },
+    loadCategoria: function(){
+      this.$router.push({ name: "category" });
+    },
   }
 }
 </script>

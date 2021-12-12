@@ -7,6 +7,9 @@ import SignUp from './components/SignUp.vue'
 import Home from './components/Home.vue'
 import Account from './components/Account.vue'
 import Transaction from './components/Transaction.vue'
+import Autor from './components/Autor.vue'
+import Libro from './components/Libro.vue'
+import Category from './components/Category.vue'
 
 const routes = [{
         path: '/user/logIn',
@@ -37,7 +40,26 @@ const routes = [{
         name: "transaction",
         component: Transaction,
         meta: { requiresAuth: true }
-    }
+    },
+    {
+        path: '/user/autor',
+        name: "autor",
+        component: Autor,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/user/libro',
+        name: "libro",
+        component: Libro,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/user/category',
+        name: "category",
+        component: Category,
+        meta: { requiresAuth: true }
+    },
+
 ];
 
 const router = createRouter({
