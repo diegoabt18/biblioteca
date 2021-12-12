@@ -22,7 +22,8 @@
       </form>
     </div>
   </div>
-
+<br>
+<br>
   <h2 class="text-center"> Lista de Autores</h2>     
     <div class="container table-responsive" style="width:50%; max-height: 200px; overflow-y: scroll; overflow-x: hidden;">
         <table  class="table table-bordered text-center overflow-auto" style="margin-bottom: 0">
