@@ -1,23 +1,18 @@
 <template>
 
-  <div id="Transaction" class="transaction">
-    <div class="container_transaction">
-      <h2>Realizar Transacción</h2>
+  <div id="Author" class="author">
+    <div class="container_author">
+      <h2>Modulo Autores</h2>
 
-      <form v-on:submit.prevent="processTransaction">
-        <input
+      <form v-on:submit.prevent="processAuthor">
+        <input class="form-control"
           type="text"
-          v-model="createTransaction.usernameDestiny"
-          placeholder="Usuario Destino"
+          v-model="Author.author_name"
+          placeholder="Nombre del Autor"
         />
-        <br />
-        <input
-          type="number"
-          v-model="createTransaction.value"
-          placeholder="Valor"
-        />
-        <br />
-        <button type="submit">Realizar Transacción</button>
+        <br>
+          <br>
+          <button class="btn btn-primary form-control" type="input">Nueva categoria</button>
       </form>
     </div>
   </div>
@@ -50,21 +45,39 @@ export default {
 
   data: function() {
     return {
-      createTransaction: {
-        usernameOrigin: localStorage.getItem("username"),
-        usernameDestiny: "",
-        value: "",
-      },
       Autor:{
-          author_id: "",
           author_name:"",
           author_surname:""
       },
+      authorDetails:[],
     };
   },
+  mounted(){
+    
+  },
+    apollo: {
+        authorDetails: {
+            query: gql`
+                query {
+                    authorDetails {
+                        category_id
+                        category_name
+                        category_surname
+                    }
+                }
+                ` ,
+                variables() {
+                    return {
+                      
+                    };
+            },
+        },
+    },
 
-  methods: {
-    processTransaction: async function() {
+
+    methods: {
+    processAutor: async function() {
+            console.log(this.Autor.author_name);
       
       if (localStorage.getItem("token_access")  === null ||
           localStorage.getItem("token_refresh") === null ) {
@@ -98,25 +111,23 @@ export default {
       await this.$apollo
         .mutate({
           mutation: gql`
-            mutation($transaction: TransactionInput!) {
-              createTransaction(transaction: $transaction) {
-                date
-                id
-                usernameDestiny
-                usernameOrigin
-                value
+            mutation($authorName: AuthorInput!) {
+              createAuthor(author_name: $authorName) {
+                author_id
+                author_name
+                author_surname
               }
             }
           `,
           variables: {
-            transaction: this.createTransaction,
+            authorName: this.Autor,
           },
         })
         .then((result) => {
-          alert("Transacción Realizada de Manera Correcta, Revise Historial");
+          alert("Nuevo Autor Agregado de Manera Correcta, Revise Historial");
         })
         .catch((error) => {
-          alert("Saldo Insuficiente o Destino Incorrecto");
+          alert("Ocurrió un error al crear el autor");
         });
     },
   },
