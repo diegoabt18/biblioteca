@@ -10,6 +10,8 @@ import Transaction from './components/Transaction.vue'
 import Autor from './components/Autor.vue'
 import Libro from './components/Libro.vue'
 import Category from './components/Category.vue'
+import Store from './components/Store.vue'
+
 
 const routes = [{
         path: '/user/logIn',
@@ -57,6 +59,12 @@ const routes = [{
         path: '/user/category',
         name: "category",
         component: Category,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/user/store',
+        name: "store",
+        component: Store,
         meta: { requiresAuth: true }
     },
 

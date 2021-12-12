@@ -1,21 +1,19 @@
 <template>
-   <div id="Categoria" >
-        <div class="container text-center">
+   <div id="Categoria"  >
+        <div class="container col-4 text-center">
             <br>
-            <br>
-       
         <h2>Modulo Categorias</h2>
 
-        <form v-on:submit.prevent="proccesCategoria">
+        <form v-on:submit.prevent="proccesCategoria"  >
             <br>
-            <input
+            <input class="form-control" 
             type="text"
             v-model="Categoria.category_name"
             placeholder="Nombre de la categoria"
             />
             <br>
             <br>
-            <button class="btn" type="submit">Nueva categoria</button>
+            <button class="btn btn-primary form-control" type="input">Nueva categoria</button>
         </form>
         </div>
     
