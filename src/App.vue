@@ -32,12 +32,7 @@
                 v-on:click="loadAccount"
                 >Cuenta</b-button
               >
-              <b-button
-                class="btn btn-light"
-                v-if="is_auth"
-                v-on:click="loadTransaction"
-                >Transacción</b-button
-              >
+              
               <b-button
                 class="btn btn-light"
                 v-if="is_auth"
@@ -174,62 +169,6 @@ export default {
   },
 };
 </script>
-
-<!--
-<style>
-
-  body{
-    margin: 0 0 0 0;
-  }
-
-  .header{
-    margin: 0%;
-    padding: 0;
-    width: 100%;
-    height: 10vh; 
-    min-height: 100px;
-
-    background-color: #283747 ;
-    color:#E5E7E9  ;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .header h1{
-    width: 20%;
-    text-align: center;
-  }
-
-  
-
-  .header nav button{
-    color: #E5E7E9;
-    background: #283747;
-    border: 1px solid #E5E7E9;
-
-    border-radius: 5px;
-    padding: 10px 20px;
-  }
-
-  .header nav button:hover{
-    color: #283747;
-    background: #E5E7E9;
-    border: 1px solid #E5E7E9;
-  }
-
-  
-  .main-component{
-    height: 75vh;
-    margin: 0%;
-    padding: 0%;
-
-    background: #FDFEFE ;
-  }
-
-</style>
--->
 
 <style scoped>
 body {

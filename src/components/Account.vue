@@ -7,35 +7,34 @@
         <span>{{ username }}</span>
       </h2>
       <h2>
-        Saldo:
-        <span>${{ accountByUsername.balance }} COP</span>
+        Correo:
+        <span>{{ userEmail }}</span>
       </h2>
       <h2>
-        Último Movimiento:
-        <span>
-          {{ accountByUsername.lastChange.substring(0, 10) }}  
-          {{ accountByUsername.lastChange.substring(11, 19) }}
-        </span>
+        Dirección:
+        <span>{{ userAddress }}</span>
+      </h2>
+      <h2>
+        Telefono:
+        <span>{{ userPhone }}</span>
       </h2>
     </div>
 
-    <h2>Transacciones</h2>     
+    <h2>Mis compras</h2>     
     <div class="container-table">
         <table>
             <tr>
+                <th>ID</th>
                 <th>Fecha</th>
-                <th>Hora</th>
-                <th>Origen</th>
-                <th>Destino</th>
+                <th>Item</th>
                 <th>Valor</th>
             </tr>
 
-            <tr v-for="transaction in transactionByUsername" :key="transaction.id">
-                <td>{{ transaction.date.substring(0, 10) }}</td>
-                <td>{{ transaction.date.substring(11, 19) }}</td>
-                <td>{{ transaction.usernameOrigin }}</td>
-                <td>{{ transaction.usernameDestiny }}</td>
-                <td>${{ transaction.value }} COP</td>
+            <tr v-for="compra in compras" :key="compra.id">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </table>
     </div>
@@ -55,8 +54,10 @@ export default {
       username: localStorage.getItem("username") || "none",
       transactionByUsername: [],
       accountByUsername: {
-        balance: "",
-        lastChange: "",
+        username: "",
+        userEmail: "",
+        userAddress: "",
+        userPhone: "",
       }
     };
   },
@@ -67,10 +68,10 @@ export default {
         query ($username: String!) {
           transactionByUsername(username: $username) {
             id
-            usernameOrigin
-            usernameDestiny
-            value
-            date
+            username
+            userEmail
+            userAddress
+            userPhone
           }
         }
       `,
@@ -85,8 +86,10 @@ export default {
       query: gql`
         query ($username: String!) {
           accountByUsername(username: $username) {
-            balance
-            lastChange
+            username
+            userEmail
+            userAddress
+            userPhone
           }
         }
       `,
